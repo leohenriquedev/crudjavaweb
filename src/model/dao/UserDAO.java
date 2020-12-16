@@ -1,14 +1,15 @@
-package dao;
+package model.dao;
 
-import model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import model.bean.User;
 
-public class UserDAO {
+
+public class UserDAO extends ConnectionFactory {
 	
 	private Connection conn;
 	private PreparedStatement stmt;
@@ -17,7 +18,7 @@ public class UserDAO {
 	private ArrayList<User> list = new ArrayList<>();
 	
 	public UserDAO() {
-		this.conn = new ConnectionFactory().getConnection();
+		conn = new ConnectionFactory().getConnection();
 	}
 	
 	public void insert(User user) {
@@ -38,8 +39,8 @@ public class UserDAO {
 	
 	public ArrayList<User> read() {
 		String sql = "SELECT * FROM users";
-		try {
-			st = conn.createStatement();
+		
+		try (Statement st = conn.createStatement()) {
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -49,6 +50,7 @@ public class UserDAO {
 				user.setAge(rs.getInt("age"));
 				list.add(user);
 			}
+			
 			
 		} catch(Exception error) {
 			throw new RuntimeException("Error: " + error);

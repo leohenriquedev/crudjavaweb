@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="model.User" %>
-<%@ page import="dao.UserDAO" %>
+<%@ page import="model.bean.User" %>
+<%@ page import="model.dao.UserDAO" %>
 <%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -11,9 +11,10 @@
 </head>
 <body>
 
-	<form action="add.jsp" method="POST">
-		Name: <input type="text" name="name">
-		Age: <input type="number" name="age">
+	<form action="UserServlet" method="POST">
+		<input type="hidden" name="method" value="insert" required>
+		Name: <input type="text" name="name" required>
+		Age: <input type="number" name="age" required>
 		<input type="submit" value="Send">
 	</form>
 	
@@ -44,7 +45,7 @@
 			<td><%= list.get(i).getAge() %></td>
 			<td>
 				<a href="edit.jsp?id=<%= list.get(i).getId() %>">Edit</a>
-				<a href="delete.jsp?id=<%= list.get(i).getId() %>">Delete</a>
+				<a href="UserServlet?method=delete&id=<%= list.get(i).getId() %>">Delete</a>
 			</td>
 		</tr>
 		
