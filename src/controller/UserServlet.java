@@ -40,16 +40,18 @@ public class UserServlet extends HttpServlet {
 			case "insert": 
 				doPost(request, response);
 				break;
+			case "update": 
+				doPut(request, response);
+				break;
+				
 			case "delete": 
 				doDelete(request, response);
 				break;
 			default:
-				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-				rd.forward(request, response);
+				break;
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		rd.forward(request, response);
+		response.sendRedirect("index.jsp");
 		
 	}
 
@@ -81,6 +83,24 @@ public class UserServlet extends HttpServlet {
 		
 	}
 	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		User u = new User();
+		UserDAO uDAO = new UserDAO();
+		
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String age = request.getParameter("age");
+		
+		u.setId(Integer.parseInt(id));
+		u.setName(name);
+		u.setAge(Integer.parseInt(age));
+		
+		uDAO.update(u);
+		
+	}
+	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -90,5 +110,6 @@ public class UserServlet extends HttpServlet {
 		uDAO.delete(Integer.parseInt(id));
 		
 	}
+
 
 }

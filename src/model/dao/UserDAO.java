@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import model.bean.User;
 
 
-public class UserDAO extends ConnectionFactory {
+public class UserDAO {
 	
 	private Connection conn;
 	private PreparedStatement stmt;
