@@ -59,6 +59,28 @@ public class UserDAO {
 		return list;
 	}
 	
+	public ArrayList<User> readBy(int id) {
+		String sql = "SELECT * FROM users WHERE id = " + id;
+		
+		try (Statement st = conn.createStatement()) {
+			rs = st.executeQuery(sql);
+			
+			if(rs.next()) {
+				User user = new User();
+				user.setId(rs.getInt("id"));
+				user.setName(rs.getString("name"));
+				user.setAge(rs.getInt("age"));
+				list.add(user);
+			}
+			
+			
+		} catch(Exception error) {
+			throw new RuntimeException("Error: " + error);
+		}
+		
+		return list;
+	}
+	
 	public void update(User user) {
 		String sql = "UPDATE users SET name = ?, age = ? WHERE id = ?";
 		try {

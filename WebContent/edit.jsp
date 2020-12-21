@@ -13,8 +13,10 @@
 <body>
 
 	<%
-		User u = new User();
 		UserDAO uDAO = new UserDAO();
+		int id = Integer.parseInt(request.getParameter("id"));
+		ArrayList<User> list = uDAO.readBy(id);
+		
 	%>
 	<div class="container col-md-6 mt-5">	
 		<form action="UserServlet" method="POST">
@@ -22,9 +24,9 @@
 				<input type="hidden" name="method" value="update" required>
 				<input type="hidden" name="id" value="<%= request.getParameter("id") %>" required>
 				<label>Name</label>
-				<input type="text" name="name" class="form-control" required>
+				<input type="text" name="name" class="form-control" value="<%= list.get(0).getName() %>" required>
 				<label class="mt-3">Age</label>
-				<input type="number" name="age" class="form-control" required>
+				<input type="number" name="age" class="form-control" value="<%= list.get(0).getAge() %>" required>
 			</div>
 			<input type="submit" value="Send" class="btn btn-outline-primary mt-3">
 		</form>

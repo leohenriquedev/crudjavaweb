@@ -22,7 +22,7 @@
 					<th>Name</th>
 					<th>Age</th>
 					<th>Actions</th>
-				</tr>
+				</tr> 
 			</thead>
 			
 			<tbody>
@@ -30,24 +30,24 @@
 			<%
 				UserDAO uDAO = new UserDAO();
 				ArrayList<User> list = uDAO.read();
-				
+									
 				for(int i = 0; i < list.size(); i++) {
 			%>
 			
-			<tr>
-				<td><%= list.get(i).getId() %></td>
-				<td><%= list.get(i).getName() %></td>
-				<td><%= list.get(i).getAge() %></td>
-				<td class="mx-auto">
-					<a class="btn btn-secondary" href="edit.jsp?id=<%= list.get(i).getId() %>">Edit</a>
-					<a class="btn btn-danger" href="UserServlet?method=delete&id=<%= list.get(i).getId() %>">Delete</a>
-				</td>
-			</tr>
+				<tr>
+					<td><%= list.get(i).getId() %></td>
+					<td><%= list.get(i).getName() %></td>
+					<td><%= list.get(i).getAge() %></td>
+					
+					<td class="mx-auto">
+						<a class="btn btn-secondary" href="edit.jsp?id=<%= list.get(i).getId() %>">Edit</a>
+						<a class="btn btn-danger" href="UserServlet?method=delete&id=<%= list.get(i).getId() %>">Delete</a>
+					</td>
+				</tr>
 			
-		
-			<% 
-				} 
-			%>
+				<% 
+					}
+				%>
 					
 			</tbody>
 		</table>
