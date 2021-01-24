@@ -1,14 +1,15 @@
 # Requisitos
 
  * Java
+ * Tomcat
  * PostgreSQL
 
-# ExecuÁ„o
+# Execu√ß√£o
 
 * Clonar projeto
-* Adicionar projeto no servidor tomcat
+* Adicionar projeto no servidor Tomcat
 * Iniciar servidor
 
 # Acesso
 
-O sistema estar· rodando na url http://localhost:8080/java-ee/
+O sistema estar√° rodando na url http://localhost:8080/java-ee/
