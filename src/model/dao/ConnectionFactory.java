@@ -11,10 +11,10 @@ public class ConnectionFactory {
 	private String password;
 	
 	public ConnectionFactory() {
-		driver = "com.mysql.cj.jdbc.Driver";
-		url = "jdbc:mysql://localhost:3306/crudjavaweb?useTimezone=true&serverTimezone=UTC";
-		username = "root";
-		password = "";
+		driver = "org.postgresql.Driver";
+		url = "jdbc:postgresql://localhost:5432/java-ee";
+		username = "postgres";
+		password = "root";
 	}
 	
 	public Connection getConnection() {
